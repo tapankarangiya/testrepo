@@ -1,0 +1,21 @@
+version: "1.0"
+
+ruleGroups:
+  # Match "command not found" errors (exit code 127)
+  - name: "Command Not Found"
+    conditionExpression:
+      operator: "OR"
+      conditions:
+        - key: "errorCode"
+          operand: "is"
+          value: 127
+        - key: "standardErrorOutput"
+          operand: "contains"
+          value: "not found"
+    actions:
+      - type: "setErrorCategory"
+        value: "CONFIGURATION_FAILURE"
+      - type: "setErrorSubcategory"
+        value: "SCRIPT_SYNTAX_ERROR"
+      - type: "setErrorMessage"
+        value: "**Command not found**: The command `abcd` does not exist. Please check your script for typos or ensure the required tool is installed."
