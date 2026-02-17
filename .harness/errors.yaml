@@ -14,7 +14,7 @@ ruleGroups:
           value: "not found"
     actions:
       - type: "setErrorCategory"
-        value: "CONFIGURATION_FAILURE"
+        value: "APPLICATION_FAILURE"
       - type: "setErrorSubcategory"
         value: "SCRIPT_SYNTAX_ERROR"
       - type: "setErrorMessage"
