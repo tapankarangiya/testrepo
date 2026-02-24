@@ -19,3 +19,22 @@ ruleGroups:
         value: "SCRIPT_SYNTAX_ERROR"
       - type: "setErrorMessage"
         value: "**Command not found**: The command `abcd` does not exist. Please check your script for typos or ensure the required tool is installed."
+
+  # Match Kaniko push permission errors (exit code 1)
+  - name: "Container Registry Push Permission Error"
+    conditionExpression:
+      operator: "AND"
+      conditions:
+        - key: "errorCode"
+          operand: "is"
+          value: 1
+        - key: "standardErrorOutput"
+          operand: "contains"
+          value: "error checking push permissions"
+    actions:
+      - type: "setErrorCategory"
+        value: "CONNECTIVITY"
+      - type: "setErrorSubcategory"
+        value: "AUTHENTICATION_ERROR"
+      - type: "setErrorMessage"
+        value: "**Container Registry Push Failed**: Unable to push image to the registry. Please verify:\n1. Your Docker connector credentials are correct and not expired\n2. The tag name format is valid (check for double slashes `//` in the path)\n3. The service account has push permissions to the registry\n4. The registry URL is correct"
