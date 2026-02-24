@@ -19,7 +19,20 @@ ruleGroups:
         value: "SCRIPT_SYNTAX_ERROR"
       - type: "setErrorMessage"
         value: "**Command not found**: The command `abcd` does not exist. Please check your script for typos or ensure the required tool is installed."
-
+  - name: "Exit status with plugin steps "
+    conditionExpression:
+      operator: "AND"
+      conditions:
+        - key: "errorCode"
+          operand: "is"
+          value: 1
+    actions:
+      - type: "setErrorCategory"
+        value: "CONNECTIVITY"
+      - type: "setErrorSubcategory"
+        value: "AUTHENTICATION_ERROR"
+      - type: "setErrorMessage"
+        value: "**Container Registry Push Failed**:
   # Match Kaniko push permission errors (exit code 1)
   - name: "Container Registry Push Permission Error"
     conditionExpression:
