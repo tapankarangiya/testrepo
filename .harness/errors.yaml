@@ -14,7 +14,7 @@ ruleGroups:
           value: "not found"
     actions:
       - type: "setErrorCategory"
-        value: "CONFIGURATION_FAILURE"
+        value: "APPLICATION_FAILURE"
       - type: "setErrorSubcategory"
         value: "SCRIPT_SYNTAX_ERROR"
       - type: "setErrorMessage"
@@ -30,7 +30,7 @@ ruleGroups:
           value: 1
     actions:
       - type: "setErrorCategory"
-        value: "CONNECTIVITY"
+        value: "APPLICATION_FAILURE"
       - type: "setErrorSubcategory"
         value: "AUTHENTICATION_ERROR"
       - type: "setErrorMessage"
@@ -49,7 +49,7 @@ ruleGroups:
           value: "error checking push permissions"
     actions:
       - type: "setErrorCategory"
-        value: "CONNECTIVITY"
+        value: "APPLICATION_FAILURE"
       - type: "setErrorSubcategory"
         value: "AUTHENTICATION_ERROR"
       - type: "setErrorMessage"
